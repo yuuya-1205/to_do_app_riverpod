@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "113955999228",
+    "project_id": "todoappriverpod",
+    "storage_bucket": "todoappriverpod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113955999228:android:d1f595f9c515291d1bb679",
+        "android_client_info": {
+          "package_name": "com.example.flutter_riverpod_to_do_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113955999228-35hl3i67qv18km80aebadbdri79r6n08.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBPqZJwnW7XuH86hUhhdg9GGOYe5V2nKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113955999228-35hl3i67qv18km80aebadbdri79r6n08.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
