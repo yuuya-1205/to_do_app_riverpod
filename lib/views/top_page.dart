@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class TopPage extends StatefulWidget {
   const TopPage({super.key});
@@ -13,7 +11,15 @@ class _TopPageState extends State<TopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('ToDoApp')),
+      appBar: AppBar(
+        title: const Text('ToDoApp'),
+      ),
+      // ignore: prefer_const_literals_to_create_immutables
+      body: Column(children: [const Text('ここにタイムラインを流す。')]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
