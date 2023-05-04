@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod_to_do_app/views/create_post_page.dart';
 
 class TopPage extends StatefulWidget {
   const TopPage({super.key});
@@ -15,9 +16,18 @@ class _TopPageState extends State<TopPage> {
         title: const Text('ToDoApp'),
       ),
       // ignore: prefer_const_literals_to_create_immutables
-      body: Column(children: [const Text('ここにタイムラインを流す。')]),
+      body: Column(children: [
+        const Text('ここにタイムラインを流す'),
+      ]),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: ((context) => const CreatePostPage()),
+            ),
+          );
+        },
         child: const Icon(Icons.add),
       ),
     );
