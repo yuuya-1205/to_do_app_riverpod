@@ -1,16 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_to_do_app/models/post.dart';
 import 'package:flutter_riverpod_to_do_app/views/create_post_page.dart';
 
-class TopPage extends StatefulWidget {
-  const TopPage({super.key});
+class TopPage extends ConsumerWidget {
+  const TopPage({Key? key}) : super(key: key);
 
   @override
-  State<TopPage> createState() => _TopPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final value = ref.watch(helloWorldProvider);
 
-class _TopPageState extends State<TopPage> {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ToDoApp'),
