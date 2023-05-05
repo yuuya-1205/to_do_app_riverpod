@@ -11,4 +11,19 @@ class ToDoRepository {
     final postId = await postCollection.add(post.toJson());
     return post.id;
   }
+
+  static final postStreamProvider = StreamProvider<List<Post>>((ref) {
+    final collection = FirebaseFirestore.instance.collection('posts');
+
+    final stream = collection.snapshots().map(
+          // CollectionのデータからItemクラスを生成する
+          (e) => e.docs.map((e) => Post.fromJson(e.data())).toList(),
+        );
+    return stream;
+  });
+
+//   static Future<String> deletePost(Post post) async{
+
+// return
+//   }
 }
