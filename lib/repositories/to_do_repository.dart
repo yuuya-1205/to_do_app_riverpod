@@ -17,11 +17,16 @@ class ToDoRepository {
 
     final stream = collection.snapshots().map(
           // CollectionのデータからItemクラスを生成する
-          (e) => e.docs.map((e) => Post.fromJson(e.data())).toList(),
+          (snap) => snap.docs
+              .map((doc) => Post.fromJson(doc.data()).copyWith(id: doc.id))
+              .toList(),
         );
     return stream;
   });
 
+  static Future<void> deletePost(Post post) async {
+    await postCollection.doc(post.id).delete();
+  }
 //   static Future<String> deletePost(Post post) async{
 
 // return

@@ -46,7 +46,9 @@ class TopPage extends ConsumerWidget {
                                   icon: const Icon(Icons.change_circle),
                                 ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    ToDoRepository.deletePost(post);
+                                  },
                                   icon: const Icon(Icons.delete),
                                 ),
                               ],
