@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_to_do_app/models/post.dart';
 import 'package:flutter_riverpod_to_do_app/repositories/to_do_repository.dart';
 import 'package:flutter_riverpod_to_do_app/views/create_post_page.dart';
+import 'package:flutter_riverpod_to_do_app/views/edit_post_page.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({Key? key}) : super(key: key);
@@ -42,7 +43,15 @@ class TopPage extends ConsumerWidget {
                             Row(
                               children: [
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: ((context) =>
+                                            EditPostPage(post: post)),
+                                      ),
+                                    );
+                                  },
                                   icon: const Icon(Icons.change_circle),
                                 ),
                                 IconButton(
