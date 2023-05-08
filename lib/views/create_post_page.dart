@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_to_do_app/models/post.dart';
@@ -12,6 +15,7 @@ class CreatePostPage extends ConsumerWidget {
     final _textProvider = Provider((ref) => TextEditingController());
     final _title = ref.watch(_titleProvider);
     final _text = ref.watch(_textProvider);
+    final todos = ToDoRepository();
     return Scaffold(
       appBar: AppBar(
         title: const Text('ToDo作成'),
@@ -32,12 +36,13 @@ class CreatePostPage extends ConsumerWidget {
             onPressed: () async {
               final title = _title.text;
               final text = _text.text;
+              // Update the post instance with the new random ID
               final post = Post(
                 id: '',
-                title: title,
-                text: text,
+                text: title,
+                title: text,
               );
-              await ToDoRepository.addPost(post);
+              todos.addPost(post);
               // ignore: use_build_context_synchronously
               Navigator.pop(context);
             },

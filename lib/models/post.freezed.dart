@@ -113,15 +113,18 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$_Post>
 /// @nodoc
 @JsonSerializable()
 class _$_Post implements _Post {
-  const _$_Post({required this.id, required this.title, required this.text});
+  const _$_Post({this.id = '', this.title = '', this.text = ''});
 
   factory _$_Post.fromJson(Map<String, dynamic> json) => _$$_PostFromJson(json);
 
   @override
+  @JsonKey()
   final String id;
   @override
+  @JsonKey()
   final String title;
   @override
+  @JsonKey()
   final String text;
 
   @override
@@ -159,9 +162,7 @@ class _$_Post implements _Post {
 
 abstract class _Post implements Post {
   const factory _Post(
-      {required final String id,
-      required final String title,
-      required final String text}) = _$_Post;
+      {final String id, final String title, final String text}) = _$_Post;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$_Post.fromJson;
 
