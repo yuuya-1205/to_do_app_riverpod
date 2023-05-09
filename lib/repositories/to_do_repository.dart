@@ -38,8 +38,8 @@ class ToDoRepository {
     return post.id;
   }
 
-  final postStreamProvider = StreamProvider<List<Post>>((ref) {
-    final collection = FirebaseFirestore.instance.collection('posts');
+  late final postStreamProvider = StreamProvider<List<Post>>((ref) {
+    final collection = firestore.collection('posts');
 
     final stream = collection.snapshots().map(
           // CollectionのデータからItemクラスを生成する
