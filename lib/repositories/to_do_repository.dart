@@ -38,7 +38,7 @@ class ToDoRepository {
     return post.id;
   }
 
-  static final postStreamProvider = StreamProvider<List<Post>>((ref) {
+  final postStreamProvider = StreamProvider<List<Post>>((ref) {
     final collection = FirebaseFirestore.instance.collection('posts');
 
     final stream = collection.snapshots().map(

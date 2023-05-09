@@ -9,10 +9,8 @@ class TopPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final stream = ToDoRepository.postStreamProvider;
-    final posts = ref.watch(stream);
     final todoRepository = ref.watch(toDoRepositoryProvider);
-
+    final posts = ref.watch(todoRepository.postStreamProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('ToDoApp'),
