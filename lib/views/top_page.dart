@@ -16,7 +16,6 @@ class TopPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('ToDoApp'),
       ),
-      // ignore: prefer_const_literals_to_create_immutables
       body: posts.when(
           loading: () => const CircularProgressIndicator(),
           error: (error, stack) => Text('Error: $error'),

@@ -2,6 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_to_do_app/models/post.dart';
 
+/// 基本的にはこう言うふうにProviderを定義するのはいいと思います。
+/// なんでもかんでもProviderにしてしまったほうがいい。
+///
+/// 理由：
+///   - override してモックを注入したい場合に扱いやすい
+///   - Providerの中で参照しやすい。
 final toDoProvider = Provider<ToDoRepository>((ref) {
   return ToDoRepository();
 });
