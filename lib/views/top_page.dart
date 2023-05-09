@@ -1,9 +1,5 @@
-import 'dart:convert';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod_to_do_app/models/post.dart';
 import 'package:flutter_riverpod_to_do_app/repositories/to_do_repository.dart';
 import 'package:flutter_riverpod_to_do_app/views/create_post_page.dart';
 import 'package:flutter_riverpod_to_do_app/views/edit_post_page.dart';
