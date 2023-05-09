@@ -11,6 +11,7 @@ class TopPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stream = ToDoRepository.postStreamProvider;
     final posts = ref.watch(stream);
+    final todoRepository = ref.watch(toDoRepositoryProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -25,48 +26,46 @@ class TopPage extends ConsumerWidget {
                 itemCount: posts.length,
                 itemBuilder: (context, index) {
                   final post = posts[index];
-                  return Container(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            const Text('タイトル'),
-                            Text(post.title),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Row(
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: ((context) =>
-                                            EditPostPage(post: post)),
-                                      ),
-                                    );
-                                  },
-                                  icon: const Icon(Icons.change_circle),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    ToDoRepository.deletePost(post);
-                                  },
-                                  icon: const Icon(Icons.delete),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Text('テキスト'),
-                            Text(post.text),
-                          ],
-                        ),
-                      ],
-                    ),
+                  return Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Text('タイトル'),
+                          Text(post.title),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: ((context) =>
+                                          EditPostPage(post: post)),
+                                    ),
+                                  );
+                                },
+                                icon: const Icon(Icons.change_circle),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  todoRepository.deletePost(post);
+                                },
+                                icon: const Icon(Icons.delete),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Text('テキスト'),
+                          Text(post.text),
+                        ],
+                      ),
+                    ],
                   );
                 });
           }),
