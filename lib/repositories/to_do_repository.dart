@@ -2,6 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_to_do_app/models/post.dart';
 
+/// 課題1
+///
+/// fake_cloud_firestore を使って unitテストを書いてみよう
+///
+/// https://pub.dev/packages/fake_cloud_firestore/example
+///
+/// 要件
+/// - widgetテストではなくunitテストを実行すること
+/// - シナリオ
+///   - addPostで新規Postを投稿する
+///   - postStreamProviderにを監視して、新規Postが正しく追加されたことを確認する
+///
+
 /// 基本的にはこう言うふうにProviderを定義するのはいいと思います。
 /// なんでもかんでもProviderにしてしまったほうがいい。
 ///
