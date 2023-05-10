@@ -11,6 +11,9 @@ void main() async {
   );
   runApp(
     const ProviderScope(
+      overrides: [
+        // firestoreProvider.overrideWithValue(FakeFirebaseFirestore.instance)
+      ],
       child: MyApp(),
     ),
   );

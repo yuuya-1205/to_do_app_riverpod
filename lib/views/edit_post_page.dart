@@ -1,24 +1,26 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_to_do_app/models/post.dart';
 import 'package:flutter_riverpod_to_do_app/repositories/to_do_repository.dart';
 
-class EditPostPage extends ConsumerWidget {
+class EditPostPage extends ConsumerStatefulWidget {
   const EditPostPage({
+    super.key,
     required this.post,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final Post post;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final _title = TextEditingController(text: post.title);
-    final _text = TextEditingController(text: post.text);
+  ConsumerState<ConsumerStatefulWidget> createState() => _EditPostPageState();
+}
 
-    final todos = ToDoRepository();
-
+class _EditPostPageState extends ConsumerState<EditPostPage> {
+  late final title0 = TextEditingController(text: widget.post.title);
+  late final text0 = TextEditingController(text: widget.post.text);
+  @override
+  Widget build(BuildContext context) {
+    final todoRepository = ref.watch(toDoRepositoryProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('ToDoApp'),
@@ -29,26 +31,26 @@ class EditPostPage extends ConsumerWidget {
         child: Column(
           children: [
             TextFormField(
-              controller: _title,
+              controller: title0,
             ),
             TextFormField(
-              controller: _text,
+              controller: text0,
             ),
             const SizedBox(
               height: 16,
             ),
             ElevatedButton(
               onPressed: () async {
-                final title = _title.text;
-                final text = _text.text;
+                final title = title0.text;
+                final text = text0.text;
                 // Generate a random ID
                 final editedPost = Post(
-                  id: post.id,
+                  id: widget.post.id,
                   text: text,
                   title: title,
                 );
                 // Update the Firestore data
-                todos.updatePost(editedPost);
+                todoRepository.updatePost(editedPost);
                 Navigator.pop(context);
               },
               child: const Text('編集する'),

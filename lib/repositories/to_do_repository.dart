@@ -1,22 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_to_do_app/models/post.dart';
 
-final toDoProvider = Provider<ToDoRepository>((ref) {
-  return ToDoRepository();
+final toDoRepositoryProvider = Provider<ToDoRepository>((ref) {
+  return ToDoRepository(ref.watch(firestoreProvider));
 });
 
+final firestoreProvider = Provider((_) => FirebaseFirestore.instance);
+
 class ToDoRepository {
-  static final firestore = FirebaseFirestore.instance;
-  static final postCollection = firestore.collection('posts');
+  ToDoRepository(this.firestore);
+  final FirebaseFirestore firestore;
+  late final postCollection = firestore.collection('posts');
 
   Future<String> addPost(Post post) async {
-    final postId = await postCollection.add(post.toJson());
+    await postCollection.add(post.toJson());
     return post.id;
   }
 
-  static final postStreamProvider = StreamProvider<List<Post>>((ref) {
-    final collection = FirebaseFirestore.instance.collection('posts');
+  late final postStreamProvider = StreamProvider<List<Post>>((ref) {
+    final collection = firestore.collection('posts');
 
     final stream = collection.snapshots().map(
           // CollectionのデータからItemクラスを生成する
@@ -27,7 +31,7 @@ class ToDoRepository {
     return stream;
   });
 
-  static Future<void> deletePost(Post post) async {
+  Future<void> deletePost(Post post) async {
     await postCollection.doc(post.id).delete();
   }
 
