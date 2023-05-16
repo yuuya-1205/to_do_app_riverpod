@@ -1,3 +1,4 @@
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_to_do_app/models/post.dart';
@@ -14,6 +15,7 @@ class CreatePostPage extends ConsumerWidget {
     final title0 = ref.watch(_titleProvider);
     final text0 = ref.watch(_textProvider);
     final todoRepository = ref.watch(toDoRepositoryProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('ToDo作成'),
@@ -34,14 +36,16 @@ class CreatePostPage extends ConsumerWidget {
             onPressed: () {
               final title = title0.text;
               final text = text0.text;
-              // Update the post instance with the new random ID
               final post = Post(
                 id: '',
                 text: title,
                 title: text,
               );
+              // todoRepository.addPost(post);
+
+              ///テストコードは持ってこれない
               todoRepository.addPost(post);
-              // ignore: use_build_context_synchronously
+
               Navigator.pop(context);
             },
             child: const Text('作成する'),
