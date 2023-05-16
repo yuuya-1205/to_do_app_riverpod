@@ -2,12 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_to_do_app/models/post.dart';
+import 'package:flutter_riverpod_to_do_app/provider/firebase_provider.dart';
 
 final toDoRepositoryProvider = Provider<ToDoRepository>((ref) {
-  return ToDoRepository(ref.watch(firestoreProvider));
+  return ToDoRepository(ref.watch(firebaseFirestoreProvider));
 });
-
-final firestoreProvider = Provider((_) => FirebaseFirestore.instance);
 
 class ToDoRepository {
   ToDoRepository(this.firestore);
@@ -18,6 +17,8 @@ class ToDoRepository {
     await postCollection.add(post.toJson());
     return post.id;
   }
+
+  ///fetch系の
 
   late final postStreamProvider = StreamProvider<List<Post>>((ref) {
     final collection = firestore.collection('posts');

@@ -1,7 +1,10 @@
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_to_do_app/firebase_options.dart';
+import 'package:flutter_riverpod_to_do_app/provider/firebase_provider.dart';
+import 'package:flutter_riverpod_to_do_app/repositories/to_do_repository.dart';
 import 'package:flutter_riverpod_to_do_app/views/top_page.dart';
 
 void main() async {
@@ -10,11 +13,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    const ProviderScope(
+    ProviderScope(
       overrides: [
-        // firestoreProvider.overrideWithValue(FakeFirebaseFirestore.instance)
+        firebaseFirestoreProvider.overrideWithValue(FakeFirebaseFirestore()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
